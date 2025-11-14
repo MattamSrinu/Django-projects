@@ -1,0 +1,78 @@
+/* Register Page Styles */
+
+body {
+    background: linear-gradient(135deg, #74b9ff, #a29bfe);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    max-width: 450px;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2d3436;
+    font-weight: 600;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #2d3436;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ced6e0;
+    padding: 10px 12px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #0984e3;
+    box-shadow: 0 0 6px rgba(9, 132, 227, 0.4);
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: #0984e3;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #74b9ff;
+    transform: translateY(-1px);
+}
+
+.btn-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #636e72;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+    color: #0984e3;
+}
+
+.alert {
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
