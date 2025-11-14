@@ -1,4 +1,3 @@
-/* General Layout */
 body {
   background: linear-gradient(135deg, #e3f2fd, #bbdefb);
   font-family: "Poppins", sans-serif;
@@ -6,7 +5,6 @@ body {
   margin: 0;
 }
 
-/* Navbar */
 .navbar {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
@@ -21,19 +19,16 @@ body {
   font-weight: 500;
 }
 
-/* Container */
 .container {
   margin-top: 40px;
 }
 
-/* Card Grid Layout */
 .friends-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 20px;
 }
 
-/* Individual Friend Card */
 .friend-card {
   background: white;
   border-radius: 15px;
@@ -65,14 +60,12 @@ body {
   justify-content: space-between;
 }
 
-/* Buttons inside cards */
 .friend-actions .btn {
   border-radius: 8px;
   font-size: 13px;
   padding: 5px 10px;
 }
 
-/* Empty message */
 .text-muted {
   text-align: center;
   font-size: 16px;

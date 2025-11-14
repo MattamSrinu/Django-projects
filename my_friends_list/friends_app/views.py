@@ -14,48 +14,38 @@ def register_view(request):
         email = request.POST['email']
         password = request.POST['password1']
         password2 = request.POST['password2']
-
         if password != password2:
             messages.error(request, "Passwords do not match.")
             return render(request, 'register.html')
-
         if Users.objects.filter(username=username).exists():
             messages.error(request, "Username already exists.")
             return render(request, 'register.html')
-
         password_bytes = password.encode('utf-8')
         salt = bcrypt.gensalt()
         hashed = bcrypt.hashpw(password_bytes, salt).decode('utf-8')
-
         user = Users(username=username, email=email, password=hashed)
         user.save()
-
         messages.success(request, 'Registration successful! Please log in.')
         return redirect('login')
-
     return render(request, 'register.html')
 
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-
         try:
             user = Users.objects.get(username=username)
         except Users.DoesNotExist:
             messages.error(request, "Invalid username or password.")
             return render(request, 'login.html')
-
         password_bytes = password.encode('utf-8')
         hashed = user.password.encode('utf-8')
-
         if bcrypt.checkpw(password_bytes, hashed):
             request.session['user_id'] = user.id
             request.session['username'] = user.username
             return redirect('index')
         else:
             messages.error(request, "Invalid username or password.")
-
     return render(request, 'login.html')
 
 def logout_view(request):
@@ -65,18 +55,27 @@ def logout_view(request):
 def index(request):
     if 'user_id' not in request.session:
         return redirect('login')
-
     user_id = request.session['user_id']
+    name_query = request.GET.get('q', '').strip()
+    address_query = request.GET.get('address', '').strip()
     friends = Friend.objects.filter(created_by_id=user_id)
-    return render(request, 'index.html', {'friends': friends})
+    if name_query:
+        friends = friends.filter(name__icontains=name_query)
+    if address_query:
+        friends = friends.filter(address__icontains=address_query)
+    friends = friends.order_by('name')
+    return render(request, 'index.html', {
+        'friends': friends,
+        'q': name_query,
+        'address': address_query,
+    })
+
 
 def create_friend(request):
     if 'user_id' not in request.session:
         return redirect('login')
-
     user_id = request.session['user_id']
     user = get_object_or_404(Users, id=user_id)
-
     if request.method == 'POST':
         form = FriendForm(request.POST)
         if form.is_valid():
@@ -86,16 +85,13 @@ def create_friend(request):
             return redirect('index')
     else:
         form = FriendForm()
-
     return render(request, 'friend_form.html', {'form': form})
 
 def update_friend(request, pk):
     if 'user_id' not in request.session:
         return redirect('login')
-
     user_id = request.session['user_id']
     friend = get_object_or_404(Friend, pk=pk, created_by_id=user_id)
-
     if request.method == 'POST':
         form = FriendForm(request.POST, instance=friend)
         if form.is_valid():
@@ -103,13 +99,11 @@ def update_friend(request, pk):
             return redirect('index')
     else:
         form = FriendForm(instance=friend)
-
     return render(request, 'friend_form.html', {'form': form})
 
 def delete_friend(request, pk):
     if 'user_id' not in request.session:
         return redirect('login')
-
     user_id = request.session['user_id']
     friend = get_object_or_404(Friend, pk=pk, created_by_id=user_id)
     friend.delete()

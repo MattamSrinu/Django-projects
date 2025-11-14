@@ -49,6 +49,20 @@
 
 
 <div class="container mt-4">
+    <!-- Search form (GET) -->
+    <form method="get" class="row g-2 mb-3 align-items-center">
+        <div class="col-sm-4">
+            <input type="search" name="q" value="{{ q }}" class="form-control" placeholder="Search by name">
+        </div>
+        <div class="col-sm-4">
+            <input type="search" name="address" value="{{ address }}" class="form-control" placeholder="Search by address">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a href="{% url 'index' %}" class="btn btn-outline-secondary">Reset</a>
+        </div>
+    </form>
+
     {% if friends %}
         <table class="table table-bordered table-hover">
             <thead class="table-light">
@@ -82,7 +96,6 @@
         <p class="text-muted">No friends added yet. Click "Add Friend" to get started.</p>
     {% endif %}
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
