@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>My Friends List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{% static 'friends_app/i_style.css' %}">
+    <style>
+        body {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.navbar {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.btn-success, .btn-danger {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.container {
+  margin-top: 40px;
+}
+
+.friends-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 20px;
+}
+
+.friend-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.friend-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.friend-card h5 {
+  font-weight: 600;
+  color: #1a237e;
+  margin-bottom: 10px;
+}
+
+.friend-card p {
+  margin: 3px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.friend-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.friend-actions .btn {
+  border-radius: 8px;
+  font-size: 13px;
+  padding: 5px 10px;
+}
+
+.text-muted {
+  text-align: center;
+  font-size: 16px;
+  color: #555 !important;
+  margin-top: 50px;
+}
+
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
